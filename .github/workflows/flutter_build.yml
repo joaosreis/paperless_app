@@ -29,16 +29,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env: # For signing the APK
-      KEY_JKS: ${{ secrets.KEY_JKS }}
-      KEY_PATH: /home/runner/key.jks
-      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-      KEY_ALIAS: key
       ARTIFACT_NAME: ${{ inputs.artifactName || 'release-apk' }}
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Create key file
-      run: echo $KEY_JKS | base64 -di > $KEY_PATH
     - uses: actions/setup-java@v2
       with:
         distribution: 'zulu'
